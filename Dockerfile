@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN a2enmod headers
 
 # Configure GD to support JPEG/PNG
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd
 
 # Update Timezone
 RUN echo "date.timezone = Europe/London" > /usr/local/etc/php/conf.d/timezone.ini
