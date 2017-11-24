@@ -2,6 +2,10 @@ FROM brettt89/silverstripe-web:5.6-platform
 MAINTAINER Lee Powell "<lee@leepowell.co.uk>"
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install zip/unzip for composer to work
+RUN apt-get update -y && apt-get install -y zip
+RUN docker-php-ext-install -j$(nproc) zip
+
 # Install Apache Headers Module
 RUN a2enmod headers
 
